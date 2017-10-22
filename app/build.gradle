@@ -1,0 +1,44 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
+    defaultConfig {
+        applicationId "com.techlung.wearfaceutils.example"
+        minSdkVersion 21
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+
+    compile project(":wearfaceutils")
+
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    compile "com.android.support:support-core-utils:26.1.0"
+    compile 'com.android.support:support-v4:26.1.0'
+
+    compile 'com.android.support:percent:26.1.0'
+    compile 'com.android.support:recyclerview-v7:26.1.0'
+    compile 'com.android.support:support-annotations:26.1.0'
+
+    provided 'com.google.android.wearable:wearable:2.0.5'
+    compile 'com.google.android.support:wearable:2.0.5'
+    compile 'com.google.android.gms:play-services-wearable:11.4.2'
+
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+}
+
+apply plugin: 'kotlin-android-extensions'

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="face_numbers_large_size">14sp</dimen>
+    <dimen name="face_numbers_normal_size">10sp</dimen>
+
+
+</resources>
