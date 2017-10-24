@@ -2,9 +2,11 @@ package com.techlung.wearfaceutils
 
 import android.graphics.Point
 import android.graphics.Rect
+import android.util.Log
 import android.view.WindowInsets
 
 object WearFaceUtils {
+
     var initalized = false
     var insets : WindowInsets? = null
 
@@ -13,8 +15,27 @@ object WearFaceUtils {
         this.initalized = true;
     }
 
+    fun pointOnCircleFace(margin: Int, angle : Double, bounds : Rect) : Point {
+        val center = Point(bounds.width() / 2, bounds.height() / 2)
+        val totalRadius = bounds.height() / 2
+        val radius = totalRadius - margin
+        return pointOnCircle(radius, angle, center)
+    }
+
+    fun pointOnChinFace(margin: Int, angle : Double, bounds : Rect, chinInset : Int) : Point {
+        val center = Point(bounds.width() / 2, bounds.height() / 2)
+        val totalRadius = bounds.height() / 2
+        val radius = totalRadius - margin
+        return pointOnChinFace(radius, totalRadius, chinInset, angle, center)
+    }
+
+    fun pointOnRectFace(margin: Int, angle : Double, bounds : Rect) : Point {
+        return pointOnRect(margin, angle, bounds)
+    }
+
     fun pointOnFace(margin: Int, angle : Double, bounds : Rect) : Point {
         if (!initalized) {
+            Log.e(WearFaceUtils.javaClass.name, "WearFaceUtils not initialized")
             return Point(0,0)
         } else {
             if (insets != null && insets!!.isRound) {
@@ -27,14 +48,14 @@ object WearFaceUtils {
                     return pointOnCircle(radius, angle, center)
                 }
             } else {
-                return pointOnRect(margin, angle, bounds.width(), bounds.height())
+                return pointOnRect(margin, angle, bounds)
             }
         }
     }
 
-    private fun pointOnRect(margin: Int, angle : Double, widthUncut: Int, heightUncut : Int) : Point {
-        val height = heightUncut - margin * 2
-        val width = widthUncut - margin * 2
+    private fun pointOnRect(margin: Int, angle : Double, bounds : Rect) : Point {
+        val height = bounds.height() - margin * 2
+        val width = bounds.width() - margin * 2
 
         val twoPI = (Math.PI*2).toFloat()
         var theta = twoPI - angle
