@@ -26,11 +26,11 @@ public void onDraw(Canvas canvas, Rect bounds) {
 }
 ```
 
-<img src="square.jpg" alt="Square" style="width: 100px;"/>
+<img src="square.png" alt="Square" style="width: 100px;"/>
 
-<img src="circle.jpg" alt="Circle" style="width: 100px;"/>
+<img src="circle.png" alt="Circle" style="width: 100px;"/>
 
-<img src="chin.jpg" alt="Circle with chin" style="width: 100px;"/>
+<img src="chin.png" alt="Circle with chin" style="width: 100px;"/>
 
 Download
 --------
