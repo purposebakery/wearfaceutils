@@ -7,8 +7,8 @@ import android.view.WindowInsets
 
 object WearFaceUtils {
 
-    var initalized = false
-    var insets : WindowInsets? = null
+    private var initalized = false
+    private var insets : WindowInsets? = null
 
     fun init(insets: WindowInsets) {
         this.insets = insets

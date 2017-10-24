@@ -3,8 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/wearfaceutils/wearfaceutils.iml" filepath="$PROJECT_DIR$/wearfaceutils/wearfaceutils.iml" />
-      <module fileurl="file://$PROJECT_DIR$/wearfaceutils/wearfaceutils-wearfaceutils.iml" filepath="$PROJECT_DIR$/wearfaceutils/wearfaceutils-wearfaceutils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lib/wearfaceutils-wearfaceutils.iml" filepath="$PROJECT_DIR$/lib/wearfaceutils-wearfaceutils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lib/wearfaceutils.iml" filepath="$PROJECT_DIR$/lib/wearfaceutils.iml" />
     </modules>
   </component>
 </project>
