@@ -26,11 +26,11 @@ public void onDraw(Canvas canvas, Rect bounds) {
 }
 ```
 
-![Circle Face](https://github.com/techlung/wearfaceutils/blob/master/circle.png?raw=true)
+![Circle Face](https://github.com/techlung/wearfaceutils/blob/master/circle.png=100x100)
 
-![Chin Face](https://github.com/techlung/wearfaceutils/blob/master/chin.png?raw=true)
+![Chin Face](https://github.com/techlung/wearfaceutils/blob/master/chin.png=100x100)
 
-![Square Face](https://github.com/techlung/wearfaceutils/blob/master/square.png?raw=true)
+![Square Face](https://github.com/techlung/wearfaceutils/blob/master/square.png=100x100)
 
 Download
 --------
