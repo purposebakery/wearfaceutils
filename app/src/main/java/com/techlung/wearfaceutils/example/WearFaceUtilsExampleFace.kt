@@ -25,7 +25,7 @@ class WearFaceUtilsExampleFace : BaseWatchFaceService() {
             backgroundPainter.setAmbientMode(isAmbient)
         }
 
-        override fun setInsets(insets : WindowInsets) {
+        override fun setInsets(insets: WindowInsets) {
             WearFaceUtils.init(insets)
         }
 

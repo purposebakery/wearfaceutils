@@ -1,7 +1,10 @@
 package com.techlung.wearfaceutils.example.modules.face
 
 import android.content.Context
-import android.graphics.*
+import android.graphics.Canvas
+import android.graphics.Paint
+import android.graphics.Point
+import android.graphics.Rect
 import android.support.v4.content.ContextCompat
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.DecelerateInterpolator
@@ -11,7 +14,6 @@ import com.techlung.wearfaceutils.WearFaceUtils
 import com.techlung.wearfaceutils.example.animation.DrawAnimation
 import com.techlung.wearfaceutils.example.generic.GenericPainter
 import com.techlung.wearfaceutils.example.utils.CircleUtil
-
 import com.techlung.wearfaceutils.example.utils.UiUtils
 
 class ClockworkPainter : GenericPainter {
@@ -41,10 +43,10 @@ class ClockworkPainter : GenericPainter {
     private var needleRotationAppearanceAnimation: DrawAnimation = DrawAnimation(DecelerateInterpolator(), ANIMATION_DURATION_VERY_LONG)
     private var needleAlphaAppearanceAnimation: DrawAnimation = DrawAnimation(LinearInterpolator(), ANIMATION_DURATION_VERY_LONG)
 
-    private var secondsTimeDifference : Int = 0
+    private var secondsTimeDifference: Int = 0
     private var drawCounter = 0
 
-    private var context : Context? = null
+    private var context: Context? = null
 
     fun initialize(context: Context, bounds: Rect) {
         initialized = true
@@ -105,7 +107,7 @@ class ClockworkPainter : GenericPainter {
         drawCounter = 0
     }
 
-    fun onDraw(context: Context, canvas: Canvas, bounds: Rect) : Boolean {
+    fun onDraw(context: Context, canvas: Canvas, bounds: Rect): Boolean {
         if (!initialized) {
             initialize(context, bounds)
         }
@@ -121,7 +123,7 @@ class ClockworkPainter : GenericPainter {
         return continueAnimation
     }
 
-    fun adjustTimesPaint() : Boolean {
+    fun adjustTimesPaint(): Boolean {
         numbersNormalPaint.alpha = (255f * numberAppearanceAnimation.getValue()).toInt()
         numbersLargePaint.alpha = (255f * numberAppearanceAnimation.getValue()).toInt()
         dotsPaint.alpha = (255f * numberAppearanceAnimation.getValue()).toInt()
@@ -129,7 +131,7 @@ class ClockworkPainter : GenericPainter {
         return numberAppearanceAnimation.isAnimationRunning()
     }
 
-    fun adjustNeedlesPaint() : Boolean {
+    fun adjustNeedlesPaint(): Boolean {
         minuteNeedlePaint.alpha = (255f * needleAlphaAppearanceAnimation.getValue()).toInt()
         hourNeedlePaint.alpha = (255f * needleAlphaAppearanceAnimation.getValue()).toInt()
 
@@ -170,9 +172,9 @@ class ClockworkPainter : GenericPainter {
     }
 
     fun drawNeedles(canvas: Canvas) {
-        val secondsOfDay : Long = ((System.currentTimeMillis() - secondsTimeDifference * 1000) % (CircleUtil.SECONDS_IN_12_HOURS.toLong() * 1000.toLong())) / 1000.toLong() //((System.currentTimeMillis() / 1000f) - secondsTimeDifference.toFloat()) % (WatchFaceUtil.SECONDS_IN_12_HOURS.toFloat())
-        val hourOfDay : Float = secondsOfDay / (60f * 60f)
-        val secondsOfHour : Float = (secondsOfDay % CircleUtil.SECONDS_IN_1_HOUR.toFloat()) / CircleUtil.SECONDS_IN_1_HOUR.toFloat()
+        val secondsOfDay: Long = ((System.currentTimeMillis() - secondsTimeDifference * 1000) % (CircleUtil.SECONDS_IN_12_HOURS.toLong() * 1000.toLong())) / 1000.toLong() //((System.currentTimeMillis() / 1000f) - secondsTimeDifference.toFloat()) % (WatchFaceUtil.SECONDS_IN_12_HOURS.toFloat())
+        val hourOfDay: Float = secondsOfDay / (60f * 60f)
+        val secondsOfHour: Float = (secondsOfDay % CircleUtil.SECONDS_IN_1_HOUR.toFloat()) / CircleUtil.SECONDS_IN_1_HOUR.toFloat()
 
         val hoursAngle = CircleUtil.radiansToClockRadians(Math.PI * 2f * (hourOfDay / 12f))
         val minutesAngle = CircleUtil.radiansToClockRadians(Math.PI * 2f * secondsOfHour)
@@ -186,7 +188,7 @@ class ClockworkPainter : GenericPainter {
     }
 
     fun drawDots(canvas: Canvas) {
-        for (i in 0..60){
+        for (i in 0..60) {
             if (i % 5 == 0) {
                 continue
             }

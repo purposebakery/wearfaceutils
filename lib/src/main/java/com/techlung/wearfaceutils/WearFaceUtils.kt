@@ -8,35 +8,35 @@ import android.view.WindowInsets
 object WearFaceUtils {
 
     private var initalized = false
-    private var insets : WindowInsets? = null
+    private var insets: WindowInsets? = null
 
     fun init(insets: WindowInsets) {
         this.insets = insets
         this.initalized = true;
     }
 
-    fun pointOnCircleFace(margin: Int, angle : Double, bounds : Rect) : Point {
+    fun pointOnCircleFace(margin: Int, angle: Double, bounds: Rect): Point {
         val center = Point(bounds.width() / 2, bounds.height() / 2)
         val totalRadius = bounds.height() / 2
         val radius = totalRadius - margin
         return pointOnCircle(radius, angle, center)
     }
 
-    fun pointOnChinFace(margin: Int, angle : Double, bounds : Rect, chinInset : Int) : Point {
+    fun pointOnChinFace(margin: Int, angle: Double, bounds: Rect, chinInset: Int): Point {
         val center = Point(bounds.width() / 2, bounds.height() / 2)
         val totalRadius = bounds.height() / 2
         val radius = totalRadius - margin
         return pointOnChinFace(radius, totalRadius, chinInset, angle, center)
     }
 
-    fun pointOnRectFace(margin: Int, angle : Double, bounds : Rect) : Point {
+    fun pointOnRectFace(margin: Int, angle: Double, bounds: Rect): Point {
         return pointOnRect(margin, angle, bounds)
     }
 
-    fun pointOnFace(margin: Int, angle : Double, bounds : Rect) : Point {
+    fun pointOnFace(margin: Int, angle: Double, bounds: Rect): Point {
         if (!initalized) {
             Log.e(WearFaceUtils.javaClass.name, "WearFaceUtils not initialized")
-            return Point(0,0)
+            return Point(0, 0)
         } else {
             if (insets != null && insets!!.isRound) {
                 val center = Point(bounds.width() / 2, bounds.height() / 2)
@@ -53,11 +53,11 @@ object WearFaceUtils {
         }
     }
 
-    private fun pointOnRect(margin: Int, angle : Double, bounds : Rect) : Point {
+    private fun pointOnRect(margin: Int, angle: Double, bounds: Rect): Point {
         val height = bounds.height() - margin * 2
         val width = bounds.width() - margin * 2
 
-        val twoPI = (Math.PI*2).toFloat()
+        val twoPI = (Math.PI * 2).toFloat()
         var theta = twoPI - angle
 
         while (theta < -Math.PI) {
@@ -70,7 +70,7 @@ object WearFaceUtils {
 
         val rectAtan = Math.atan2(height.toDouble(), width.toDouble())
         val tanTheta = Math.tan(theta)
-        val region : Int
+        val region: Int
 
         if ((theta > -rectAtan) && (theta <= rectAtan)) {
             region = 1
@@ -82,7 +82,7 @@ object WearFaceUtils {
             region = 4
         }
 
-        val edgePoint = Point(width/2, height/2)
+        val edgePoint = Point(width / 2, height / 2)
         var xFactor = 1
         var yFactor = 1
 
@@ -98,7 +98,7 @@ object WearFaceUtils {
             edgePoint.y += (yFactor * (width / 2.0) * tanTheta).toInt()
         } else {
             edgePoint.x += (xFactor * (height / (2.0 * tanTheta))).toInt()                        // "Z1"
-            edgePoint.y += (yFactor * (height /  2.0)).toInt()
+            edgePoint.y += (yFactor * (height / 2.0)).toInt()
         }
 
         edgePoint.x += margin
@@ -107,8 +107,8 @@ object WearFaceUtils {
         return edgePoint;
     }
 
-    private fun pointOnChinFace(radius: Int, totalRadius: Int, chinInset: Int, angleInRadians: Double, center: Point) : Point {
-        val chinInsetScaled: Int = (((radius.toFloat() * 2)  / (totalRadius.toFloat() * 2)) * chinInset).toInt()
+    private fun pointOnChinFace(radius: Int, totalRadius: Int, chinInset: Int, angleInRadians: Double, center: Point): Point {
+        val chinInsetScaled: Int = (((radius.toFloat() * 2) / (totalRadius.toFloat() * 2)) * chinInset).toInt()
         if (isInChin(angleInRadians, radius, chinInsetScaled)) {
             return pointOnChin(radius, chinInsetScaled, angleInRadians, center)
         } else {
@@ -116,9 +116,9 @@ object WearFaceUtils {
         }
     }
 
-    private fun isInChin(angleInRadians: Double, radius: Int, chinInset: Int) : Boolean {
-        val angleLowerBound : Float = (Math.PI * 0.5f - Math.acos(1 - chinInset.toDouble() / radius.toDouble())).toFloat()
-        val angleUpperBound : Float = (Math.PI * 0.5f + Math.acos(1 - chinInset.toDouble() / radius.toDouble())).toFloat()
+    private fun isInChin(angleInRadians: Double, radius: Int, chinInset: Int): Boolean {
+        val angleLowerBound: Float = (Math.PI * 0.5f - Math.acos(1 - chinInset.toDouble() / radius.toDouble())).toFloat()
+        val angleUpperBound: Float = (Math.PI * 0.5f + Math.acos(1 - chinInset.toDouble() / radius.toDouble())).toFloat()
         return angleInRadians > angleLowerBound && angleInRadians < angleUpperBound
     }
 

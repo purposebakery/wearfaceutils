@@ -6,12 +6,12 @@ class DrawAnimation(val interpolator: Interpolator, val durationMillis: Int) {
     var startTime: Long = 0
     var animationRunning: Boolean = false
 
-    fun start(){
+    fun start() {
         startTime = System.currentTimeMillis()
         animationRunning = true
     }
 
-    fun getValue() : Float {
+    fun getValue(): Float {
         val diff: Long = System.currentTimeMillis() - startTime
         if (diff > durationMillis) {
             animationRunning = false;
@@ -22,7 +22,7 @@ class DrawAnimation(val interpolator: Interpolator, val durationMillis: Int) {
         }
     }
 
-    fun isAnimationRunning() : Boolean {
+    fun isAnimationRunning(): Boolean {
         return animationRunning
     }
 }

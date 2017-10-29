@@ -1,7 +1,10 @@
 package com.techlung.wearfaceutils.example.modules.face
 
 import android.content.Context
-import android.graphics.*
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.Rect
 import android.support.v4.content.ContextCompat
 import com.techlung.example.R
 import com.techlung.wearfaceutils.example.generic.GenericPainter
@@ -16,7 +19,7 @@ class BackgroundPainter : GenericPainter {
         this.isAmbient = isAmbient
     }
 
-    fun onDraw(context: Context, canvas: Canvas, bounds: Rect) : Boolean {
+    fun onDraw(context: Context, canvas: Canvas, bounds: Rect): Boolean {
         if (!initialized) {
             initialize(context, bounds)
         }
