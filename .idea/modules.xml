@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/lib/lib.iml" filepath="$PROJECT_DIR$/lib/lib.iml" />
-      <module fileurl="file://$PROJECT_DIR$/wearfaceutils.iml" filepath="$PROJECT_DIR$/wearfaceutils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wearfaceutils/lib.iml" filepath="$PROJECT_DIR$/wearfaceutils/lib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wearfaceutils-parent.iml" filepath="$PROJECT_DIR$/wearfaceutils-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wearfaceutils-sample/app.iml" filepath="$PROJECT_DIR$/wearfaceutils-sample/app.iml" />
     </modules>
   </component>
 </project>

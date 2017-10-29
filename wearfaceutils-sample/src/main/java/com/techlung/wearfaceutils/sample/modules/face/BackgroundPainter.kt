@@ -1,4 +1,4 @@
-package com.techlung.wearfaceutils.example.modules.face
+package com.techlung.wearfaceutils.sample.modules.face
 
 import android.content.Context
 import android.graphics.Canvas
@@ -7,7 +7,7 @@ import android.graphics.Paint
 import android.graphics.Rect
 import android.support.v4.content.ContextCompat
 import com.techlung.example.R
-import com.techlung.wearfaceutils.example.generic.GenericPainter
+import com.techlung.wearfaceutils.sample.generic.GenericPainter
 
 class BackgroundPainter : GenericPainter {
 

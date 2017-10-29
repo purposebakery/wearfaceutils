@@ -1,4 +1,4 @@
-package com.techlung.wearfaceutils.example.generic
+package com.techlung.wearfaceutils.sample.generic
 
 import android.content.BroadcastReceiver
 import android.content.Context

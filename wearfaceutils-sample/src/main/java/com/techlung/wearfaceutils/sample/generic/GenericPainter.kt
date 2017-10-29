@@ -1,4 +1,4 @@
-package com.techlung.wearfaceutils.example.generic
+package com.techlung.wearfaceutils.sample.generic
 
 interface GenericPainter {
 

@@ -1,4 +1,4 @@
-package com.techlung.wearfaceutils.example.utils
+package com.techlung.wearfaceutils.sample.utils
 
 import android.content.Context
 

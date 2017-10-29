@@ -1,4 +1,4 @@
-package com.techlung.wearfaceutils.example.modules.face
+package com.techlung.wearfaceutils.sample.modules.face
 
 import android.content.Context
 import android.graphics.Canvas
@@ -11,10 +11,10 @@ import android.view.animation.DecelerateInterpolator
 import android.view.animation.LinearInterpolator
 import com.techlung.example.R
 import com.techlung.wearfaceutils.WearFaceUtils
-import com.techlung.wearfaceutils.example.animation.DrawAnimation
-import com.techlung.wearfaceutils.example.generic.GenericPainter
-import com.techlung.wearfaceutils.example.utils.CircleUtil
-import com.techlung.wearfaceutils.example.utils.UiUtils
+import com.techlung.wearfaceutils.sample.animation.DrawAnimation
+import com.techlung.wearfaceutils.sample.generic.GenericPainter
+import com.techlung.wearfaceutils.sample.utils.CircleUtil
+import com.techlung.wearfaceutils.sample.utils.UiUtils
 
 class ClockworkPainter : GenericPainter {
     val NUMBER_MARGIN_DP = 14

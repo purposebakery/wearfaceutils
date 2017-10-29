@@ -1,4 +1,4 @@
-package com.techlung.wearfaceutils.example.animation
+package com.techlung.wearfaceutils.sample.animation
 
 import android.view.animation.Interpolator
 

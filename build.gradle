@@ -9,18 +9,12 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.0-alpha01'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
 }
 
-plugins {
-    id "com.jfrog.bintray" version "1.7"
-}
-
-group = 'com.techlung.wearfaceutils'
-version = '1.0.0'
 
 allprojects {
     repositories {
@@ -36,37 +30,3 @@ apply plugin: 'java'
 //task clean(type: Delete) {
 //    delete rootProject.buildDir
 //}
-
-ext {
-    PUBLISH_GROUP_ID = 'com.techlung.wearfaceutils'
-    PUBLISH_ARTIFACT_ID = 'wearfaceutils'
-    PUBLISH_VERSION = '1.0.0'
-}
-
-bintray {
-    user = 'techlung'//System.getenv('BINTRAY_USER')
-    key = 'e99710cdccae7ef49dc8fcf16ff603c0fb9763cc'//System.getenv('BINTRAY_KEY')
-    configurations = ['archives']
-    pkg {
-        repo = 'wearfaceutils'
-        name = 'wearfaceutils'
-        desc = 'Android Watch Face Utility'
-        websiteUrl = 'https://github.com/techlung/wearfaceutils'
-        issueTrackerUrl = 'https://github.com/techlung/wearfaceutils/issues'
-        vcsUrl = 'https://github.com/techlung/wearfaceutils.git'
-        licenses = ['Apache-2.0']
-        labels = ['android', 'android wear']
-        publicDownloadNumbers = true
-        githubRepo = 'techlung/wearfaceutils' //Optional Github repository
-        githubReleaseNotesFile = 'README.md' //Optional Github readme file
-
-        //Optional version descriptor
-        version {
-            name = '1.0.0' //Bintray logical version name
-            desc = 'Android Watch Face Utility 1.0.0 first stable'
-            released  = new Date()
-            vcsTag = '1.0.0'
-        }
-    }
-
-}

@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@android:style/Theme.DeviceDefault">
         <service
-            android:name="com.techlung.wearfaceutils.example.WearFaceUtilsExampleFace"
+            android:name="com.techlung.wearfaceutils.sample.WearFaceUtilsSampleFace"
             android:label="@string/my_digital_name"
             android:permission="android.permission.BIND_WALLPAPER">
             <meta-data
@@ -41,7 +41,7 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name="com.techlung.wearfaceutils.example.modules.settings.SettingsActivity"></activity>
+        <activity android:name="com.techlung.wearfaceutils.sample.modules.settings.SettingsActivity"></activity>
     </application>
 
 </manifest>

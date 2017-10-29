@@ -1,1 +1,2 @@
-include ':app', ':lib'
+rootProject.name = 'wearfaceutils-parent'
+include ':wearfaceutils-sample', ':wearfaceutils'

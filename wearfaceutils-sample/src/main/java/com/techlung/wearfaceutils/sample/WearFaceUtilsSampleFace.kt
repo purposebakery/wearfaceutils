@@ -1,15 +1,15 @@
-package com.techlung.wearfaceutils.example
+package com.techlung.wearfaceutils.sample
 
 import android.graphics.Canvas
 import android.graphics.Rect
 import android.support.wearable.watchface.WatchFaceService
 import android.view.WindowInsets
 import com.techlung.wearfaceutils.WearFaceUtils
-import com.techlung.wearfaceutils.example.generic.BaseWatchFaceService
-import com.techlung.wearfaceutils.example.modules.face.BackgroundPainter
-import com.techlung.wearfaceutils.example.modules.face.ClockworkPainter
+import com.techlung.wearfaceutils.sample.generic.BaseWatchFaceService
+import com.techlung.wearfaceutils.sample.modules.face.BackgroundPainter
+import com.techlung.wearfaceutils.sample.modules.face.ClockworkPainter
 
-class WearFaceUtilsExampleFace : BaseWatchFaceService() {
+class WearFaceUtilsSampleFace : BaseWatchFaceService() {
 
     override fun onCreateEngine(): Engine {
         return Engine()
