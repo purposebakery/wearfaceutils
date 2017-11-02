@@ -9,8 +9,8 @@ import android.support.v4.content.ContextCompat
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.LinearInterpolator
-import com.techlung.example.R
 import com.techlung.wearfaceutils.WearFaceUtils
+import com.techlung.wearfaceutils.sample.R
 import com.techlung.wearfaceutils.sample.animation.DrawAnimation
 import com.techlung.wearfaceutils.sample.generic.GenericPainter
 import com.techlung.wearfaceutils.sample.utils.CircleUtil

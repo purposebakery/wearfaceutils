@@ -6,7 +6,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Rect
 import android.support.v4.content.ContextCompat
-import com.techlung.example.R
+import com.techlung.wearfaceutils.sample.R
 import com.techlung.wearfaceutils.sample.generic.GenericPainter
 
 class BackgroundPainter : GenericPainter {

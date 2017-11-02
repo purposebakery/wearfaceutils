@@ -1,6 +1,37 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
+apply plugin: 'com.github.dcendents.android-maven'
+
+/*
+ext {
+    bintrayRepo = 'android'
+    bintrayName = 'wearfaceutils'
+
+    publishedGroupId = 'com.techlung.wearfaceutils'
+    libraryName = 'wearfaceutils'
+    artifact = 'wearfaceutils'
+
+    libraryDescription = 'Android Watch Face Utility'
+
+    siteUrl = 'https://github.com/techlung/wearfaceutils'
+    gitUrl = 'https://github.com/techlung/wearfaceutils.git'
+
+    libraryVersion = '1.0.0'
+
+    developerId = 'techlung'
+    developerName = 'Oliver Metz'
+    developerEmail = 'techlung@posteo.net'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}*/
+
+repositories {
+    google()
+}
+
 android {
     compileSdkVersion 26
     buildToolsVersion "26.0.2"
@@ -9,7 +40,7 @@ android {
         minSdkVersion 20
         targetSdkVersion 26
         versionCode 1
-        versionName "0.0.1"
+        versionName "1.0.0"
     }
 
     buildTypes {
@@ -18,54 +49,133 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:26.1.0'
     testImplementation 'junit:junit:4.12'
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 }
-repositories {
-    mavenCentral()
-}
+
+/*
+def siteUrl = 'https://github.com/techlung/wearfaceutils'
+def gitUrl = 'https://github.com/techlung/wearfaceutils.git'
+group = 'com.techlung.wearfaceutils'
+*/
+
 
 apply plugin: 'com.jfrog.bintray'
 
-group = 'com.techlung.wearfaceutils'
-version = '1.0.0'
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
-ext {
-    PUBLISH_GROUP_ID = 'com.techlung.wearfaceutils'
-    PUBLISH_ARTIFACT_ID = 'wearfaceutils'
-    PUBLISH_VERSION = '1.0.0'
-}
+def siteUrl = 'https://github.com/techlung/wearfaceutils'
+def gitUrl = 'https://github.com/techlung/wearfaceutils.git'
 
 bintray {
-    user = 'techlung'//System.getenv('BINTRAY_USER')
-    key = 'e99710cdccae7ef49dc8fcf16ff603c0fb9763cc'//System.getenv('BINTRAY_KEY')
+    user = properties.getProperty('bintray.user')
+    key = properties.getProperty('bintray.apikey')
+    pkg {
+        repo = 'android'
+        name = 'wearfaceutils'
+        desc = 'Android Watch Face Utility'
+        websiteUrl = siteUrl
+        issueTrackerUrl = 'https://github.com/techlung/wearfaceutils/issues'
+        vcsUrl = gitUrl
+        licenses = ['Apache-2.0']
+        labels = ['aar', 'android', 'android wear']
+        publicDownloadNumbers = true
+        githubRepo = 'techlung/wearfaceutils' //Optional Github repository
+        githubReleaseNotesFile = 'README.md' //Optional Github readme file
+
+        version {
+            name = '1.0.0' //Bintray logical version name
+        }
+    }
+}
+
+install {
+    repositories.mavenInstaller {
+        // This generates POM.xml with proper parameters
+        pom {
+            project {
+                packaging 'aar'
+
+                // Add your description here
+                name 'Android Watch Face Utility'
+                description = 'Helps to calculate a point on a generic Android Wear Watchface'
+                url siteUrl
+
+                // Set your license
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'techlung'
+                        name 'Oliver Metz'
+                        email 'ometz@posteo.net'
+                    }
+                }
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+
+                }
+            }
+        }
+    }
+}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+
+artifacts {
+    //archives javadocJar
+    archives sourcesJar
+}
+/*
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+// https://github.com/bintray/gradle-bintray-plugin
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
     configurations = ['archives']
     pkg {
         repo = 'wearfaceutils'
         name = 'wearfaceutils'
         desc = 'Android Watch Face Utility'
-        websiteUrl = 'https://github.com/techlung/wearfaceutils'
+        websiteUrl = siteUrl
         issueTrackerUrl = 'https://github.com/techlung/wearfaceutils/issues'
-        vcsUrl = 'https://github.com/techlung/wearfaceutils.git'
+        vcsUrl = gitUrl
         licenses = ['Apache-2.0']
         labels = ['android', 'android wear']
         publicDownloadNumbers = true
+        publish = true
         githubRepo = 'techlung/wearfaceutils' //Optional Github repository
         githubReleaseNotesFile = 'README.md' //Optional Github readme file
-
-        //Optional version descriptor
-        version {
-            name = '1.0.0' //Bintray logical version name
-            desc = 'Android Watch Face Utility 1.0.0 first stable'
-            released  = new Date()
-            vcsTag = '1.0.0'
-        }
     }
 
 }
+*/
