@@ -1,35 +1,15 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
-apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.novoda.bintray-release'
 
-/*
-ext {
-    bintrayRepo = 'android'
-    bintrayName = 'wearfaceutils'
-
-    publishedGroupId = 'com.techlung.wearfaceutils'
-    libraryName = 'wearfaceutils'
-    artifact = 'wearfaceutils'
-
-    libraryDescription = 'Android Watch Face Utility'
-
-    siteUrl = 'https://github.com/techlung/wearfaceutils'
-    gitUrl = 'https://github.com/techlung/wearfaceutils.git'
-
-    libraryVersion = '1.0.0'
-
-    developerId = 'techlung'
-    developerName = 'Oliver Metz'
-    developerEmail = 'techlung@posteo.net'
-
-    licenseName = 'The Apache Software License, Version 2.0'
-    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-    allLicenses = ["Apache-2.0"]
-}*/
-
-repositories {
-    google()
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.novoda:bintray-release:0.7.0'
+    }
 }
 
 android {
@@ -58,124 +38,20 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 }
 
-/*
-def siteUrl = 'https://github.com/techlung/wearfaceutils'
-def gitUrl = 'https://github.com/techlung/wearfaceutils.git'
-group = 'com.techlung.wearfaceutils'
-*/
-
-
-apply plugin: 'com.jfrog.bintray'
-
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
-def siteUrl = 'https://github.com/techlung/wearfaceutils'
-def gitUrl = 'https://github.com/techlung/wearfaceutils.git'
-
-bintray {
-    user = properties.getProperty('bintray.user')
-    key = properties.getProperty('bintray.apikey')
-    pkg {
-        repo = 'android'
-        name = 'wearfaceutils'
-        desc = 'Android Watch Face Utility'
-        websiteUrl = siteUrl
-        issueTrackerUrl = 'https://github.com/techlung/wearfaceutils/issues'
-        vcsUrl = gitUrl
-        licenses = ['Apache-2.0']
-        labels = ['aar', 'android', 'android wear']
-        publicDownloadNumbers = true
-        githubRepo = 'techlung/wearfaceutils' //Optional Github repository
-        githubReleaseNotesFile = 'README.md' //Optional Github readme file
-
-        version {
-            name = '1.0.0' //Bintray logical version name
-        }
-    }
+publish {
+    groupId = 'com.techlung.wearfaceutils'
+    artifactId = 'wearfaceutils'
+    publishVersion = '1.0.0'
+    desc = 'Android Watch Face Utility'
+    website = 'https://github.com/techlung/wearfaceutils'
+    bintrayUser = properties.getProperty('bintray.user')
+    bintrayKey = properties.getProperty('bintray.apikey')
+    dryRun = false
 }
 
-install {
-    repositories.mavenInstaller {
-        // This generates POM.xml with proper parameters
-        pom {
-            project {
-                packaging 'aar'
-
-                // Add your description here
-                name 'Android Watch Face Utility'
-                description = 'Helps to calculate a point on a generic Android Wear Watchface'
-                url siteUrl
-
-                // Set your license
-                licenses {
-                    license {
-                        name 'The Apache Software License, Version 2.0'
-                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                    }
-                }
-                developers {
-                    developer {
-                        id 'techlung'
-                        name 'Oliver Metz'
-                        email 'ometz@posteo.net'
-                    }
-                }
-                scm {
-                    connection gitUrl
-                    developerConnection gitUrl
-                    url siteUrl
-
-                }
-            }
-        }
-    }
+tasks.withType(Javadoc).all {
+    enabled = false
 }
-
-task sourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    classifier = 'sources'
-}
-
-
-task javadoc(type: Javadoc) {
-    source = android.sourceSets.main.java.srcDirs
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc.destinationDir
-}
-
-
-artifacts {
-    //archives javadocJar
-    archives sourcesJar
-}
-/*
-Properties properties = new Properties()
-properties.load(project.rootProject.file('local.properties').newDataInputStream())
-
-// https://github.com/bintray/gradle-bintray-plugin
-bintray {
-    user = properties.getProperty("bintray.user")
-    key = properties.getProperty("bintray.apikey")
-    configurations = ['archives']
-    pkg {
-        repo = 'wearfaceutils'
-        name = 'wearfaceutils'
-        desc = 'Android Watch Face Utility'
-        websiteUrl = siteUrl
-        issueTrackerUrl = 'https://github.com/techlung/wearfaceutils/issues'
-        vcsUrl = gitUrl
-        licenses = ['Apache-2.0']
-        labels = ['android', 'android wear']
-        publicDownloadNumbers = true
-        publish = true
-        githubRepo = 'techlung/wearfaceutils' //Optional Github repository
-        githubReleaseNotesFile = 'README.md' //Optional Github readme file
-    }
-
-}
-*/
