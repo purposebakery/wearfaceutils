@@ -47,7 +47,11 @@ You can also force the different formats, regardless of the actual watch you're 
 Download
 --------
 
-coming soon...
+Add the following to your dependencies.
+
+```java
+compile 'com.techlung.wearfaceutils:wearfaceutils:1.0.0'
+```
 
 License
 -------
